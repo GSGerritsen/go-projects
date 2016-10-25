@@ -31,12 +31,15 @@ func getStockData(ticker string) {
 		// Cleaning up the json response a little bit, as it started with '//'
 		body = body[bytes.IndexRune(body, '['):]
 
+		// The json response is in an array at the top level, so the struct here needs to be one as well.
 		var stock []Stock
 
+		// assuming no error, populates stock struct as if calling: stock = Stock [ {T: "data", L: "moreData" } ]
 		err = json.Unmarshal(body, &stock)
 		if err != nil {
 			log.Fatal(err)
 
+			// stock struct in an array, so can't be accessed simply by stock.T.
 		} else {
 			fmt.Printf("Company name: %s\nToday's price: %s\n", stock[0].T, stock[0].L)
 		}
@@ -55,6 +58,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	// Leaving in case I want to add more detailed flag sets
 	switch os.Args[1] {
 	case "ticker":
 
