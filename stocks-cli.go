@@ -43,7 +43,6 @@ func getStockData(ticker string) {
 		} else {
 			fmt.Printf("Company name: %s\nToday's price: %s\n", stock[0].T, stock[0].L)
 		}
-
 	}
 }
 
@@ -76,11 +75,7 @@ func main() {
 			tickerCommand.PrintDefaults()
 			os.Exit(1)
 		} else {
-
 			getStockData(*tickerPointer)
-
 		}
-
 	}
-
 }
